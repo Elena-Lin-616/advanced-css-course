@@ -6,3 +6,189 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777;
+  padding: 2rem;
+}
+/* TODO: Animation */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* **************************** */
+/* TODO: header element */
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 1, 0.8)
+    ),
+    url("./../img/hero.jpg");
+  background-size: cover;
+  background-position: top;
+  /* (0,0), (100%,0), (100%, 100%), (0, 100%) */
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.logo {
+  height: 4rem;
+  animation: moveInRight 1s;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+  /* fix animation shake problem */
+}
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 700;
+  letter-spacing: 3.5rem;
+
+  /* animation */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+}
+.heading-primary--sub {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 1.7rem;
+  animation: moveInRight 1s;
+}
+
+/* todo: special button animation, to show click effects */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.6rem;
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  border-radius: 10rem;
+  transform: all 0.2s;
+  position: relative;
+  /*write in  initial state  to apply animation */
+  /* which property to animate and time of animation */
+}
+
+.btn:hover {
+  /* will be animated in relation to their initial state */
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn:active {
+  /* relation to initial link state */
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  color: #777;
+  background-color: #fff;
+}
+
+/* animate zoom out and zoom back */
+
+/* pseudo element of its parent  */
+.btn::after {
+  /*todo 1. display psuedo element on pagae  */
+  content: "";
+  display: inline-block;
+  /* todo 2. loop exactly same like btn */
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  /* todo 3. put behind the button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  /* change it become animation  */
+}
+.btn-white::after {
+  background-color: #fff;
+}
+
+/* show btn::after when hover, when hover, want to 
+    put a element behind it
+*/
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 1s;
+  animation-fill-mode: backwards;
+  /* 0% animation will be apply before animation */
+}
