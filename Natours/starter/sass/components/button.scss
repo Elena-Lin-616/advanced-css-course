@@ -1,0 +1,70 @@
+@import "./base/base";
+@import "./base/animations";
+
+/* todo: special button animation, to show click effects */
+%btn-placeholder {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.6rem;
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  border-radius: 10rem;
+
+  transition: all 0.2s;
+  position: relative;
+}
+.btn {
+  &:link {
+    @extend %btn-placeholder;
+  }
+  &:visited {
+    @extend %btn-placeholder;
+  }
+  &:hover {
+    /* will be animated in relation to their initial state */
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &:active {
+    /* relation to initial link state */
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &-white {
+    color: $color-grey-dark;
+    background-color: $color-white;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &::after {
+    /*todo 1. display psuedo element on pagae  */
+    content: "";
+    display: inline-block;
+    /* todo 2. loop exactly same like btn */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* todo 3. put behind the button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+    /* change it become animation  */
+  }
+
+  &-animated {
+    animation: moveInBottom 0.5s ease-out 1s;
+    animation-fill-mode: backwards;
+    /* 0% animation will be apply before animation */
+  }
+}
