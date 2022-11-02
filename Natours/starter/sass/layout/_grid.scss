@@ -1,0 +1,10 @@
+.row {
+  // * width: 1140px, convension size
+  // if vw > max-width, will use it 11rem
+  // if vw < max-width, will adapt 100% viewport
+  max-width: 114rem;
+  background-color: #eee;
+  //  * set a block element inside another block element
+  margin: 0 auto;
+  margin-bottom: 8rem;
+}
