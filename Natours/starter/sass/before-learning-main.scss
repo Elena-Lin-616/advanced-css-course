@@ -1,0 +1,67 @@
+$color-primary: rgb(40, 180, 133);
+$color-secondary: rgb(126, 213, 111);
+$color-primary-dark: #28b485;
+
+$color-black: #000;
+$color-grey-dark: #777;
+$color-white: #fff;
+
+* *::before *::after {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      $color-primary-secondary,
+      $color-primary-dark
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+}
+
+%btn-placeholder {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn {
+  @extend %btn-placeholder;
+
+  &:link {
+    @extend %btn-placeholder;
+  }
+  &:visited {
+    @extend %btn-placeholder;
+  }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      /*when we hover the button, want some style for after pseudo element*/
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; /*fade out*/
+    }
+  }
+}
